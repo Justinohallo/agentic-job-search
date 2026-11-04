@@ -1,0 +1,17 @@
+{
+  "fault": "F-09",
+  "description": "Claim contradicts MASTER without any number (sole engineer becomes team lead)",
+  "layer": "judge",
+  "deterministic": {
+    "mustInclude": [],
+    "mustHaveNoErrors": true
+  },
+  "judge": {
+    "mustInclude": [
+      {
+        "rule": "G-8",
+        "severity": "error"
+      }
+    ]
+  }
+}

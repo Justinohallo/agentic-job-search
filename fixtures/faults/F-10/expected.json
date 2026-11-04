@@ -1,0 +1,17 @@
+{
+  "fault": "F-10",
+  "description": "Claims an outcome MASTER marks unmeasured",
+  "layer": "judge",
+  "deterministic": {
+    "mustInclude": [],
+    "mustHaveNoErrors": true
+  },
+  "judge": {
+    "mustInclude": [
+      {
+        "rule": "G-8",
+        "severity": "error"
+      }
+    ]
+  }
+}

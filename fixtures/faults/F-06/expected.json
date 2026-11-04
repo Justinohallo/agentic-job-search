@@ -1,0 +1,21 @@
+{
+  "fault": "F-06",
+  "description": "Line from the never-use list",
+  "layer": "deterministic",
+  "deterministic": {
+    "mustInclude": [
+      {
+        "rule": "G-5",
+        "severity": "error"
+      },
+      {
+        "rule": "G-3",
+        "severity": "error"
+      }
+    ],
+    "mustHaveNoErrors": false
+  },
+  "judge": {
+    "mustInclude": []
+  }
+}

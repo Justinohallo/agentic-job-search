@@ -1,0 +1,17 @@
+{
+  "fault": "F-03",
+  "description": "Invented metric on a real achievement",
+  "layer": "deterministic",
+  "deterministic": {
+    "mustInclude": [
+      {
+        "rule": "G-3",
+        "severity": "error"
+      }
+    ],
+    "mustHaveNoErrors": false
+  },
+  "judge": {
+    "mustInclude": []
+  }
+}
