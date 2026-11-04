@@ -28,6 +28,7 @@ The architect and the builder are separate seats. The builder never edits a spec
 | `package.json`, `package-lock.json`, `tsconfig.json`, `.github/**` | Builder | Read |
 | `CHANGELOG.md` | Builder (task entries), QA (sign-off) | Append only |
 | `BLOCKERS.md` | Anyone | Append only; the architect resolves |
+| `skills/**` | The role-skills thread (generic, fictional-candidate versions of the job-search team skills) | Read. Skills use Sam Rivera from `fixtures/`, never real data, and follow ADR-001 |
 
 ## Reading order
 
