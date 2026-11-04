@@ -1,0 +1,47 @@
+[
+  {
+    "skills": [
+      "job-account-lead"
+    ],
+    "query": "Run the weekly review.",
+    "files": [
+      "PIPELINE.md",
+      "outreach/CONTACTS.md",
+      "skills/RUNS.md"
+    ],
+    "expected_behavior": [
+      "Builds a funnel table whose every number names its source file",
+      "Names one binding constraint with evidence; with mostly cold submissions and no conversations, names outreach/top of funnel",
+      "States the case against its own plan before the decisions",
+      "Writes reviews/<yyyy>-W<nn>.md and updates PIPELINE next-action columns only",
+      "Ends with a verdict and a confidence level"
+    ]
+  },
+  {
+    "skills": [
+      "job-account-lead"
+    ],
+    "query": "We drafted 40 messages and 6 resumes this week, so we're on track, right?",
+    "files": [
+      "outreach/CONTACTS.md"
+    ],
+    "expected_behavior": [
+      "Rejects drafts as a progress measure and counts sent messages, replies and conversations instead",
+      "Says plainly if conversations with hiring people are zero"
+    ]
+  },
+  {
+    "skills": [
+      "job-account-lead"
+    ],
+    "query": "Drop the Harbour Ledger application, it's a long shot.",
+    "files": [
+      "PIPELINE.md",
+      "fixtures/candidate/applications/harbour-ledger-frontend/BRIEF.md"
+    ],
+    "expected_behavior": [
+      "Treats it as the candidate's decision and records a dated BRIEF line before closing the row",
+      "Gives one sentence on what is lost before doing it"
+    ]
+  }
+]

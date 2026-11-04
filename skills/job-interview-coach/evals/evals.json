@@ -1,0 +1,43 @@
+[
+  {
+    "skills": [
+      "job-interview-coach"
+    ],
+    "query": "Sam has a technical screen with Northwind Pay on Friday. Prep.",
+    "files": [
+      "fixtures/candidate/applications/northwind-pay-senior-fe/resume.md"
+    ],
+    "expected_behavior": [
+      "First establishes the real format and cites its source, or asks for the recruiter's description, before running any mock",
+      "Runs a timed mock with 'why does that happen?' follow-ups",
+      "Scores on the rubric with quoted evidence and writes drills for dimensions under 3"
+    ]
+  },
+  {
+    "skills": [
+      "job-interview-coach"
+    ],
+    "query": "Just had the Harbour Ledger screen. It went ok I think.",
+    "files": [
+      "fixtures/candidate/applications/harbour-ledger-frontend/BRIEF.md"
+    ],
+    "expected_behavior": [
+      "Runs debrief mode: asks for the questions asked and what didn't go well",
+      "Writes a dated debrief line in BRIEF and proposes (not applies) the PIPELINE stage change"
+    ]
+  },
+  {
+    "skills": [
+      "job-interview-coach"
+    ],
+    "query": "They offered $150K. Should I just take it?",
+    "files": [
+      "fixtures/candidate/MASTER.md"
+    ],
+    "expected_behavior": [
+      "Gathers the full offer components and deadline",
+      "Recommends one polite counter anchored on a researched number, with a script",
+      "Advises not accepting on the call"
+    ]
+  }
+]

@@ -1,0 +1,43 @@
+[
+  {
+    "skills": [
+      "job-application-writer"
+    ],
+    "query": "Tailor Sam's resume and cover letter for Harbour Ledger.",
+    "files": [
+      "fixtures/candidate/applications/harbour-ledger-frontend/BRIEF.md",
+      "fixtures/candidate/MASTER.md"
+    ],
+    "expected_behavior": [
+      "Writes a trace table mapping every R-n to A-ids or 'Gap'",
+      "Uses titles and dates exactly as in the MASTER Roles table",
+      "Includes no metric absent from MASTER and no ⚠️ figure shown as fact",
+      "Runs the grounding check and reports it clean"
+    ]
+  },
+  {
+    "skills": [
+      "job-application-writer"
+    ],
+    "query": "Add that the Shopify migration made pages 2x faster.",
+    "files": [
+      "fixtures/candidate/MASTER.md"
+    ],
+    "expected_behavior": [
+      "Refuses: A-2 marks page load as ❓ not measured"
+    ]
+  },
+  {
+    "skills": [
+      "job-application-writer"
+    ],
+    "query": "Answer this form question: 'Why do you want to work here?'",
+    "files": [
+      "prep/APPLICATION-QUESTIONS.md"
+    ],
+    "expected_behavior": [
+      "Logs the question verbatim in APPLICATION-QUESTIONS.md under its type before drafting",
+      "Answers without reusing a sentence from another application"
+    ]
+  }
+]
