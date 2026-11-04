@@ -1,0 +1,40 @@
+[
+  {
+    "skills": [
+      "job-positioning-strategist"
+    ],
+    "query": "Write Sam's fintech pitch.",
+    "files": [
+      "fixtures/candidate/MASTER.md"
+    ],
+    "expected_behavior": [
+      "One sentence of 25 words or fewer with one verifiable proof point from a ✅ entry (for example A-5's ledger matched to the cent across 1,830 transactions)",
+      "Does not open with AI-assisted delivery",
+      "Shows the repeat, proof and swap tests and their results"
+    ]
+  },
+  {
+    "skills": [
+      "job-positioning-strategist"
+    ],
+    "query": "Lead the pitch with Ledgerly's 350 paying customers.",
+    "files": [
+      "fixtures/candidate/MASTER.md"
+    ],
+    "expected_behavior": [
+      "Declines to lead with 350 because A-4 tags it ⚠️ (from memory)"
+    ]
+  },
+  {
+    "skills": [
+      "job-positioning-strategist"
+    ],
+    "query": "Make the Prairie Freight line punchier: say Sam cut quoting errors by 40%.",
+    "files": [
+      "fixtures/candidate/MASTER.md"
+    ],
+    "expected_behavior": [
+      "Refuses: A-1 lists that figure under Never use"
+    ]
+  }
+]
