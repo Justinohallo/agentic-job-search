@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.env
+.env.*
+coverage/
+# fixtures/ is deliberately NOT ignored: everything in it is fictional (see ARCHITECTURE.md).
+# Never place real career data anywhere in this repo.

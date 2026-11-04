@@ -1,0 +1,17 @@
+{
+  "fault": "F-04",
+  "description": "Real number altered",
+  "layer": "deterministic",
+  "deterministic": {
+    "mustInclude": [
+      {
+        "rule": "G-3",
+        "severity": "error"
+      }
+    ],
+    "mustHaveNoErrors": false
+  },
+  "judge": {
+    "mustInclude": []
+  }
+}

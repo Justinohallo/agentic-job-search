@@ -1,0 +1,17 @@
+{
+  "fault": "F-07",
+  "description": "Contact details outside the header",
+  "layer": "deterministic",
+  "deterministic": {
+    "mustInclude": [
+      {
+        "rule": "G-6",
+        "severity": "error"
+      }
+    ],
+    "mustHaveNoErrors": false
+  },
+  "judge": {
+    "mustInclude": []
+  }
+}

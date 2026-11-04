@@ -1,0 +1,17 @@
+{
+  "fault": "F-08",
+  "description": "Sub-id that only resolves to its parent",
+  "layer": "deterministic",
+  "deterministic": {
+    "mustInclude": [
+      {
+        "rule": "G-2W",
+        "severity": "warn"
+      }
+    ],
+    "mustHaveNoErrors": false
+  },
+  "judge": {
+    "mustInclude": []
+  }
+}
