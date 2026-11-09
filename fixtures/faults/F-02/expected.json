@@ -1,0 +1,17 @@
+{
+  "fault": "F-02",
+  "description": "Cites an id that does not exist in MASTER",
+  "layer": "deterministic",
+  "deterministic": {
+    "mustInclude": [
+      {
+        "rule": "G-2",
+        "severity": "error"
+      }
+    ],
+    "mustHaveNoErrors": false
+  },
+  "judge": {
+    "mustInclude": []
+  }
+}

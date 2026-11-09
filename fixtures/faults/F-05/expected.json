@@ -1,0 +1,17 @@
+{
+  "fault": "F-05",
+  "description": "Estimate presented as fact",
+  "layer": "deterministic",
+  "deterministic": {
+    "mustInclude": [
+      {
+        "rule": "G-4",
+        "severity": "warn"
+      }
+    ],
+    "mustHaveNoErrors": false
+  },
+  "judge": {
+    "mustInclude": []
+  }
+}
