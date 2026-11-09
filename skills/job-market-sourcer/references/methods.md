@@ -21,3 +21,28 @@
 
 - LinkedIn people search filtered to the company and to 1st/2nd-degree connections, read-only.
 - Engineering blog authors, conference speakers and GitHub org members name the team leads.
+
+## LinkedIn notifications page (verified 2026-11-09)
+
+The signed-in notifications page is the densest list of what LinkedIn is pushing. Each job card ("<alert>: new opportunities in <place>", "See 10 jobs similar to one you recently viewed", "You're a top applicant for…") links to a search URL whose `originToLandingJobPostings` parameter lists the posting ids, up to 10 per card. The signed-in UI hides ids everywhere else, so this is the one place to get them in bulk.
+
+1. Announce first, then open `https://www.linkedin.com/notifications/` in the candidate's signed-in Chrome (Control_Chrome `open_url`). Read only: no clicks.
+2. Run this in the tab (`execute_javascript`); it returns one row per card with the alert name, the card origin and the ids:
+
+```js
+(() => { const seen = new Set(), out = [];
+  document.querySelectorAll('a[href*="originToLandingJobPostings"]').forEach(a => {
+    if (seen.has(a.href)) return; seen.add(a.href);
+    let c = a; for (let i = 0; i < 6 && c.parentElement; i++) { c = c.parentElement; if ((c.innerText || '').length > 60) break; }
+    const u = new URL(a.href);
+    out.push({ alert: u.searchParams.get('keywords'), origin: u.searchParams.get('origin'),
+      ids: u.searchParams.get('originToLandingJobPostings').split(','),
+      text: (c.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 200) });
+  });
+  return JSON.stringify(out); })()
+```
+
+3. Close the tab. Union the ids, drop any already in `job-leads/seen-ids.txt`, and read each remaining id with the guest detail endpoint above (title, company, location, posted age, employment type, description with pay).
+4. Append every id read to `job-leads/seen-ids.txt` (one per line, `<id> <date> <company>`), so the next run dedupes by id rather than by company name.
+
+Limits: the page shows only the ~10 most recent notifications (scrolling loads no more on 2026-11-09), so it has to be read daily or the older cards are lost. The cards mirror the saved alerts, so alert tuning still decides the quality. `origin` tells cards apart: `SEMANTIC_SEARCH_JOB_ALERT_IN_APP_NOTIFICATION` (saved alert), `BYV_SIMILAR_JOBS_IN_APP_NOTIFICATION` (similar to a posting the candidate viewed; often the best-targeted cards), `JobSearchOrigin_TOP_APPLICANT_NOTIFICATION_LANDING` (Premium top-applicant list; the URL carries only one id).
