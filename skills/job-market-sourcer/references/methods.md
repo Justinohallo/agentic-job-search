@@ -46,3 +46,24 @@ The signed-in notifications page is the densest list of what LinkedIn is pushing
 4. Append every id read to `job-leads/seen-ids.txt` (one per line, `<id> <date> <company>`), so the next run dedupes by id rather than by company name.
 
 Limits: the page shows only the ~10 most recent notifications (scrolling loads no more on 2026-11-09), so it has to be read daily or the older cards are lost. The cards mirror the saved alerts, so alert tuning still decides the quality. `origin` tells cards apart: `SEMANTIC_SEARCH_JOB_ALERT_IN_APP_NOTIFICATION` (saved alert), `BYV_SIMILAR_JOBS_IN_APP_NOTIFICATION` (similar to a posting the candidate viewed; often the best-targeted cards), `JobSearchOrigin_TOP_APPLICANT_NOTIFICATION_LANDING` (Premium top-applicant list; the URL carries only one id).
+
+## Employer feeds: a company's own ATS (verified 2026-11-10)
+
+LinkedIn search ranks across a whole region, so a short list of anchor employers gets drowned out, and some roles never reach LinkedIn search at all. Two cheap fixes, in order:
+
+1. **LinkedIn company filter.** Add `f_C=<id>,<id>,...` to the guest search. The numeric id is in `<meta name="companyId">` on any public job page (`https://ca.linkedin.com/jobs/view/<jobId>`); company pages are behind the login wall. One query covers 20 companies and keeps LinkedIn ids, so the seen-ids ledger works unchanged. The guest endpoints return HTTP 429 after roughly 8 rapid requests: back off and keep it to two keywords per run. Keyword matches can be in the body, so don't title-filter these hits.
+2. **The company's own ATS feed.** Identify it once from an apply link, then pull JSON:
+
+| ATS | How to spot it | Public read |
+|---|---|---|
+| Greenhouse | `boards.greenhouse.io/<token>` | `GET https://boards-api.greenhouse.io/v1/boards/<token>/jobs` |
+| Ashby | `jobs.ashbyhq.com/<token>` | `GET https://api.ashbyhq.com/posting-api/job-board/<token>` |
+| Lever | `jobs.lever.co/<token>` (token can contain a dot, e.g. `brand.com`) | `GET https://api.lever.co/v0/postings/<token>?mode=json` |
+| Workday | `<tenant>.wd<N>.myworkdayjobs.com/<site>` | `POST https://<host>/wday/cxs/<tenant>/<site>/jobs` with `{"limit":20,"offset":0,"searchText":"<city>"}` |
+| Avature | `/careers/JobDetail/<slug>/<id>` URLs | `GET <base>/en_US/careers/SearchJobs/<keyword>?listFilterMode=1` (HTML; no location, read each detail page) |
+| Amazon | amazon.jobs | `GET https://www.amazon.jobs/en/search.json?latitude=..&longitude=..&radius=24km&category[]=software-development` |
+| SuccessFactors | `/job/<City>-<Title>/<id>` URLs | `/services/rss/job/?keywords=` exists but may ignore keywords or sit behind Cloudflare; fall back to route 1 |
+
+Prefix non-LinkedIn ids by source (`gh:`, `ashby:`, `lever:`, `wd:<tenant>:`, `avature:<site>:`, `amzn:`) so one seen-ids ledger dedupes both routes. Generic board tokens can belong to a different company with the same name: check the board's locations before trusting it. Each source fails differently, so one dead source logs an error and never stops the sweep.
+
+What the first live run showed: the company filter found most anchor roles, and the direct feeds added roles LinkedIn search hadn't surfaced (a big-tech "web frameworks" role and two full-stack roles on a Workday tenant). That's the case for keeping both routes.
