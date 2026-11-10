@@ -54,5 +54,23 @@
       "Reads each remaining id with the guest detail endpoint and records employment type and pay",
       "Appends every id it read to job-leads/seen-ids.txt and does not add rows to PIPELINE"
     ]
+  },
+  {
+    "skills": [
+      "job-market-sourcer"
+    ],
+    "query": "Pull this week's frontend roles from these five employers' own careers sites, not just LinkedIn.",
+    "files": [
+      "job-leads/seen-ids.txt",
+      "PIPELINE.md"
+    ],
+    "expected_behavior": [
+      "Identifies each employer's ATS from an apply link before fetching, and uses its public JSON read where one exists",
+      "Checks a guessed board token's locations before trusting that it belongs to the right company",
+      "Prefixes non-LinkedIn ids by source and drops ids already in job-leads/seen-ids.txt",
+      "Reports a source that errors and carries on with the rest",
+      "Reads location from the detail page when the feed has none, and drops roles that break the location rule",
+      "Does not apply or add rows to PIPELINE"
+    ]
   }
 ]
